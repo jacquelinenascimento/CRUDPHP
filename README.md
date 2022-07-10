@@ -3,7 +3,7 @@
 
  ## 🛠️ Tecnologias usadas
  
- * Editor de código: VSCode
+ * Editor de código: Visual Studio Code
  * Linguagem de programação: PHP
  * Linguagem de marcação: HTML e CSS
  * Banco de dados: MySQL
