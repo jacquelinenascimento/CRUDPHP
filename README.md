@@ -8,4 +8,6 @@
  * Linguagem de marcação: HTML e CSS
  * Banco de dados: MySQL
  * Criação do servidor web na máquina: Xampp
- * Versionamento de código: GutHub
+ * Versionamento de código: GitHub
+
+Utilizei o PHP em união com o HTML pra criar o front e os scripts para inclusão, edição e deleção de dados na base de dados SQL.
