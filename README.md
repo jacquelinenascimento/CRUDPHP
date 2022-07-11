@@ -5,7 +5,7 @@
  
  * Editor de código: Visual Studio Code
  * Linguagem de programação: PHP
- * Linguagem de marcação: HTML e CSS
+ * Linguagem de marcação: HTML
  * Banco de dados: MySQL
  * Criação do servidor web na máquina: Xampp
  * Versionamento de código: GitHub
