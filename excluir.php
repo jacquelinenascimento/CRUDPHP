@@ -8,11 +8,10 @@ $id = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT);
 
 if (empty($id)) {
     $_SESSION['msg'] = "Usuário não encontrado";
-    header("Location: index.php");
-    exit();
+
 }
 
-$query_usuario = "SELECT id FROM usuarios WHERE id = $id LIMIT 1";
+$query_usuario = "SELECT id FROM usuarios WHERE id = $id";
 $result_usuario = $conn->prepare($query_usuario);
 $result_usuario->execute();
 
@@ -21,14 +20,12 @@ if(($result_usuario) AND ($result_usuario->rowCount =!0)) {
     $apagar_usuario = $conn->prepare($query_del_usuario);
 
     if($apagar_usuario->execute()) {
-        $_SESSION['msg'] = "Usuário apagado com sucesso.";
+        echo "Usuário apagado com sucesso.";
         header("Location: index.php");
     }else {
-        $_SESSION['msg'] = "Usuário não apagado. Tente novamente.";
-    header("Location: index.php");
+        echo "Usuário não apagado. Tente novamente.";
     }
 }else{
-    $_SESSION['msg'] = "Usuário não encontrado";
-    header("Location: index.php");
+    echo "Usuário não encontrado";
 }
 ?>

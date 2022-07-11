@@ -13,15 +13,16 @@ include_once './conexao.php';
     <title>Cadastro de Usuários</title>
 </head>
 <body>
+    
     <a href="index.php">Listar</a><br>
     <a href="cadastrar.php">Cadastrar</a><br>
-  
+    
+
     <h2>Cadastro de Usuários</h2>
    
         <?php
 
             $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-            var_dump($dados);
 
             if(!empty($dados['cadUsuario'])){
                 $empty_input = false;

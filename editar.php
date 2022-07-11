@@ -6,9 +6,7 @@ include_once './conexao.php';
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
 if (empty($id)) {
-    $_SESSION['msg'] = "Usuário não encontrado";
-    header("Location: index.php");
-    exit();
+    echo "Usuário não encontrado";
 }
 
 ?>
@@ -26,10 +24,11 @@ if (empty($id)) {
     <a href="cadastrar.php">Cadastrar</a><br>
   
     
+
     <h2>Edição do Cadastro de Usuário</h2>
 
     <?php
-        $query_usuario = "SELECT id, nome, email FROM usuarios WHERE id = $id LIMIT 1";
+        $query_usuario = "SELECT id, nome, email FROM usuarios WHERE id = $id";
         $result_usuario = $conn->prepare($query_usuario);
         $result_usuario->execute();
         
@@ -37,14 +36,12 @@ if (empty($id)) {
             $row_usuario = $result_usuario->fetch(PDO::FETCH_ASSOC);
         
         }else {
-            $_SESSION['msg'] = "Usuário não encontrado";
-            header("Location: index.php");
-            exit();
+            echo "Usuário não encontrado";
+            
         }
 
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        var_dump($dados);
 
         if(!empty($dados['EditUsuario'])){
             $empty_input = false;
@@ -63,9 +60,10 @@ if (empty($id)) {
                 $edit_usuario->bindParam(':nome', $dados['nome'], PDO::PARAM_STR);
                 $edit_usuario->bindParam(':email', $dados['email'], PDO::PARAM_STR);
                 $edit_usuario->bindParam(':id', $dados['id'], PDO::PARAM_INT);
-                if($edit_usuario->execute()) {
-                    $_SESSION['msg'] = "Cadastro editado com sucesso.<br>";
-                    header("Location: index.php");
+                $execute = $edit_usuario->execute();
+
+                if($execute) {
+                    echo "Cadastro editado com sucesso.<br>";
                 }else{
                     echo("ERRO: Não foi possível salvar as alterações.");
                 }
@@ -91,7 +89,7 @@ if (empty($id)) {
             echo $row_usuario['email']; 
         } 
         ?>" required><br><br>
-
+        <input type="number" name="id" id="id" style="display: none" value="<?php echo $id?>">
         <input type="submit" value="Salvar" name="EditUsuario">
     </form>
 
